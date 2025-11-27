@@ -1,0 +1,7 @@
+const dgram = require('dgram');
+const s = dgram.createSocket('udp4');
+s.bind(41234, () => {
+  s.setBroadcast(true);
+  const buf = Buffer.from("HELLO_FROM_DEVICE1");
+  s.send(buf, 0, buf.length, 41234, "192.168.1.255");
+});
